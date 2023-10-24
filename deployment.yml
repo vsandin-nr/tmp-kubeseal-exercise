@@ -1,30 +1,32 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
   labels:
-    app: nginx
-  name: nginx
+    app: app
+  name: app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx
+      app: app
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: nginx
+        app: app
     spec:
       containers:
       - image: nginx
-        name: nginx
-        resources: {}
+        name: app
         env:
-          - name: MY_PASSWORD
+          - name: DB_PASSWORD 
             valueFrom:
               secretKeyRef:
-                name: test
-                key: foo
-status: {}
+                name: database-password
+                key: PASSWORD
+          - name: LOGGING_API_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: logging-api-token
+                key: api-token
