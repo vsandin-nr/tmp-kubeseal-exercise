@@ -1,6 +1,0 @@
-apiVersion: v1
-data:
-  api-token: ODE5ODI5ODk4aGE5MW5hMTIz
-kind: Secret
-metadata:
-  name: logging-api-token
